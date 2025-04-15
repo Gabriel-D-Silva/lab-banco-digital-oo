@@ -2,17 +2,22 @@
 public class Main {
 
 	public static void main(String[] args) {
-		Cliente venilton = new Cliente();
-		venilton.setNome("Venilton");
-		
-		Conta cc = new ContaCorrente(venilton);
-		Conta poupanca = new ContaPoupanca(venilton);
+		Banco BB = new Banco("Banco do Brasil");
+		BB.cadastrarCliente(new Cliente("Venilton"), "C");
+		Conta Venilton = BB.getContas().get(0);
+		BB.cadastrarCliente(new Cliente("Lucas"), "C");
+		Conta Lucas = BB.getContas().get(1);
+		BB.cadastrarCliente(new Cliente("Danilo"), "P");
+		@SuppressWarnings("unused")
+		Conta Danilo = BB.getContas().get(2);
 
-		cc.depositar(100);
-		cc.transferir(100, poupanca);
 		
-		cc.imprimirExtrato();
-		poupanca.imprimirExtrato();
+		Venilton.transferir(100, Lucas);;
+		
+		Venilton.imprimirExtrato();
+		Lucas.imprimirExtrato();
+		
+		BB.toString();
 	}
 
 }
